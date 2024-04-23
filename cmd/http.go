@@ -2,8 +2,9 @@ package cmd
 
 import (
 	"context"
-	"github.com/labstack/echo/v4"
 	"projectCRUDecho/infra"
+
+	"github.com/labstack/echo/v4"
 )
 
 func StartHttp(ctx context.Context, di *infra.ContainerDI) {

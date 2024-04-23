@@ -1,6 +1,9 @@
 package response
 
-type DtoUser struct {
-	Name string `json:"name"`
-	Age  int    `json:"age"`
+import "time"
+
+type ResponseUser struct {
+	Name string    `json:"name"`
+	Age  int       `json:"age"`
+	Now  time.Time `json:"datetime"`
 }

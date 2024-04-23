@@ -7,7 +7,11 @@ import (
 )
 
 func main() {
-	ctx := context.Background()
-	container := infra.NewContainerDI()
-	cmd.StartHttp(ctx, container)
+	config := infra.NewConfig()
+	container := infra.NewContainerDI(config)
+
+	cmd.StartHttp(
+		context.Background(),
+		container,
+	)
 }

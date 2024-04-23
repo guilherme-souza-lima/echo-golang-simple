@@ -1,9 +1,10 @@
 package handler
 
 import (
-	"github.com/labstack/echo/v4"
 	"net/http"
 	"projectCRUDecho/internal/service"
+
+	"github.com/labstack/echo/v4"
 )
 
 type UserHandler struct {
@@ -19,5 +20,6 @@ func (u UserHandler) GetUser(c echo.Context) error {
 	if err != nil {
 		return c.String(http.StatusBadRequest, err.Error())
 	}
+
 	return c.JSON(http.StatusOK, result)
 }
