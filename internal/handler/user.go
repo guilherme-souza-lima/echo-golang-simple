@@ -7,6 +7,10 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
+type UserHandlerIntercade interface {
+	GetUser(c echo.Context) error
+}
+
 type UserHandler struct {
 	UserServiceInterface service.UserServiceInterface
 }

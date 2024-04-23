@@ -1,16 +1,23 @@
 package cmd
 
 import (
-	"context"
-	"projectCRUDecho/infra"
+	"projectCRUDecho/internal/handler"
 
 	"github.com/labstack/echo/v4"
 )
 
-func StartHttp(ctx context.Context, di *infra.ContainerDI) {
+type Server struct {
+	UserHandlerIntercade handler.UserHandlerIntercade
+}
+
+func NewServer(UserHandlerIntercade handler.UserHandlerIntercade) Server {
+	return Server{UserHandlerIntercade}
+}
+
+func (s Server) Start() {
 	e := echo.New()
 
-	e.GET("/", di.UserHAndler.GetUser)
+	e.GET("/", s.UserHandlerIntercade.GetUser)
 
 	e.Logger.Fatal(e.Start(":1323"))
 }
