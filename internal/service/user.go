@@ -1,6 +1,8 @@
 package service
 
 import (
+	"fmt"
+	"projectCRUDecho/infra/token"
 	"projectCRUDecho/internal/repository"
 	"projectCRUDecho/internal/response"
 	"time"
@@ -23,6 +25,14 @@ func (u UserService) GetUSer() (user response.ResponseUser, err error) {
 	if err != nil {
 		return user, err
 	}
+
+	tokenMaker, err := token.NewPaseto("abcdefghijkl12345678901234567890")
+	if err != nil {
+		return user, fmt.Errorf("Couldn't create token maker: %w", err)
+	}
+
+	info, _ := tokenMaker.CreateToken("guilherme", time.Minute)
+	fmt.Println(info)
 
 	now := time.Now()
 	user = response.ResponseUser{
